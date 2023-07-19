@@ -9,6 +9,18 @@ namespace Managers.Pool
 
         public PoolInfo[] Pools { get => pools; }
 
+        public PoolInfo GetPoolInfoById(string poolId)
+        {
+            for (int i = 0; i < pools.Length; i++)
+            {
+                if (pools[i].Prefab.name.Equals(poolId))
+                {
+                    return pools[i];
+                }
+            }
+            return null;
+        }
+
         [System.Serializable]
         public class PoolInfo
         {

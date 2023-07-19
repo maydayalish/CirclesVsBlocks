@@ -1,56 +1,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Utility;
 
-public class EventManager : MonoBehaviour
+namespace Managers
 {
-    private readonly Dictionary<string, UnityEventBase> eventsDictionary = new Dictionary<string, UnityEventBase>();
-
-    public void RegisterEvent<T>(string eventName, UnityAction<T> action)
+    public class EventManager : ManagerBase
     {
-        if (eventsDictionary.TryGetValue(eventName, out UnityEventBase unityEvent))
+        private readonly Dictionary<string, UnityEventBase> eventsDictionary = new Dictionary<string, UnityEventBase>();
+
+        public override void Initialize()
         {
-            if (unityEvent is UnityEvent<T>)
+            ServiceLocator.Register(this);
+        }
+
+        public void RegisterEvent<T>(string eventName, UnityAction<T> action)
+        {
+            if (eventsDictionary.TryGetValue(eventName, out UnityEventBase unityEvent))
             {
-                ((UnityEvent<T>)unityEvent).AddListener(action);
+                if (unityEvent is UnityEvent<T>)
+                {
+                    ((UnityEvent<T>)unityEvent).AddListener(action);
+                }
+                else
+                {
+                    Debug.LogError(eventName + " is already registered with a different data type.");
+                }
             }
             else
             {
-                Debug.LogError(eventName + " is already registered with a different data type.");
+                UnityEvent<T> newEvent = new UnityEvent<T>();
+                newEvent.AddListener(action);
+                eventsDictionary[eventName] = newEvent;
             }
         }
-        else
-        {
-            UnityEvent<T> newEvent = new UnityEvent<T>();
-            newEvent.AddListener(action);
-            eventsDictionary[eventName] = newEvent;
-        }
-    }
 
-    public void UnregisterEvent<T>(string eventName, UnityAction<T> action)
-    {
-        if (eventsDictionary.ContainsKey(eventName))
+        public void UnregisterEvent<T>(string eventName, UnityAction<T> action)
         {
-            ((UnityEvent<T>)eventsDictionary[eventName]).RemoveListener(action);
-        }
-    }
-
-    public void TriggerEvent<T>(string eventName, T eventData)
-    {
-        if (eventsDictionary.TryGetValue(eventName, out UnityEventBase unityEvent))
-        {
-            if (unityEvent is UnityEvent<T> eventWithCorrectType)
+            if (eventsDictionary.ContainsKey(eventName))
             {
-                eventWithCorrectType?.Invoke(eventData);
+                ((UnityEvent<T>)eventsDictionary[eventName]).RemoveListener(action);
+            }
+        }
+
+        public void TriggerEvent<T>(string eventName, T eventData)
+        {
+            if (eventsDictionary.TryGetValue(eventName, out UnityEventBase unityEvent))
+            {
+                if (unityEvent is UnityEvent<T> eventWithCorrectType)
+                {
+                    eventWithCorrectType?.Invoke(eventData);
+                }
+                else
+                {
+                    Debug.LogError(eventName + " is registered with a different data type " + typeof(T));
+                }
             }
             else
             {
-                Debug.LogError(eventName + " is registered with a different data type " + typeof(T));
+                Debug.LogError(eventName + " is not registered.");
             }
-        }
-        else
-        {
-            Debug.LogError(eventName + " is not registered.");
         }
     }
 }

@@ -1,6 +1,8 @@
 using Managers.Pool;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility;
 
 namespace Managers
 {
@@ -11,7 +13,7 @@ namespace Managers
 
         public override void Initialize()
         {
-            base.Initialize();
+            ServiceLocator.Register(this);
             if (configuration == null)
             {
                 Debug.LogError("No PoolingConfiguration assigned!");
@@ -22,28 +24,7 @@ namespace Managers
             {
                 CreateObjectPool(poolInfo.Prefab, poolInfo.InitialSize, poolInfo.GoBackOnDisable);
             }
-        }
-
-        private void CreateObjectPool(PoolElement prefab, int initialSize, bool goBackOnDisable)
-        {
-            string prefabName = prefab.name;
-            if (!objectPools.ContainsKey(prefabName))
-            {
-                objectPools[prefabName] = new Queue<GameObject>();
-
-                for (int i = 0; i < initialSize; i++)
-                {
-                    PoolElement newPoolElement = Instantiate(prefab.gameObject).GetComponent<PoolElement>();
-                    GameObject poolObj = newPoolElement.gameObject;
-                    poolObj.SetActive(false);
-                    objectPools[prefabName].Enqueue(poolObj);
-                    newPoolElement.Initialize(goBackOnDisable, prefabName);
-                }
-            }
-            else
-            {
-                Debug.LogError("Pool creation error. The pool called " + prefabName + " has already been created. Prefab name of a pool element is a key and must be unique");
-            }
+            Debug.Log("Pooling Manager Called");
         }
 
         public GameObject GetPooledObject(string poolId)
@@ -58,7 +39,10 @@ namespace Managers
                 }
                 else
                 {
-                    Debug.LogWarning("Object pool for prefab " + poolId + " is empty. Consider increasing the initial size.");
+                    if (CreatePoolObjectFromId(poolId))
+                    {
+                        GetPooledObject(poolId);
+                    }
                 }
             }
             else
@@ -80,5 +64,50 @@ namespace Managers
                 Debug.LogError("Object pool for prefab " + poolId + " does not exist. Make sure it's added to the configuration.");
             }
         }
+
+        private void CreateObjectPool(PoolElement prefab, int initialSize, bool goBackOnDisable)
+        {
+            string prefabName = prefab.name;
+            if (!objectPools.ContainsKey(prefabName))
+            {
+                objectPools[prefabName] = new Queue<GameObject>();
+
+                for (int i = 0; i < initialSize; i++)
+                {
+                    CreatePoolObject(prefab, goBackOnDisable);
+                }
+            }
+            else
+            {
+                Debug.LogError("Pool creation error. The pool called " + prefabName + " has already been created. Prefab name of a pool element is a key and must be unique");
+            }
+        }
+
+        private GameObject CreatePoolObjectFromId(string poolId)
+        {
+            var poolInfo = configuration.GetPoolInfoById(poolId);
+            if (poolInfo != null)
+            {
+                return CreatePoolObject(poolInfo.Prefab, poolInfo.GoBackOnDisable);
+            }
+            return null;
+        }
+
+        private GameObject CreatePoolObject(PoolElement poolElement, bool goBackOnDisable)
+        {
+            GameObject newPoolObject = Instantiate(poolElement.gameObject);
+            newPoolObject.SetActive(false);
+            newPoolObject.GetComponent<PoolElement>().Initialize(goBackOnDisable, poolElement.name);
+            objectPools[poolElement.name].Enqueue(newPoolObject);
+            return newPoolObject;
+        }
+
+        //TODO Delete Test cases
+        [Button("Get Torus")]
+        public void GetTorus()
+        {
+            GetPooledObject("Torus");
+        }
+
     }
 }

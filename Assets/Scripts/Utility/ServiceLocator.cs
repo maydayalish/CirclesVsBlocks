@@ -10,6 +10,7 @@ namespace Utility
 
         public static void Register<T>(T service)
         {
+            Debug.Log("Type: " + typeof(T));
             services[typeof(T)] = service;
         }
 

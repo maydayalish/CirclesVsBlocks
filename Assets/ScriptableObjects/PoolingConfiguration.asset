@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7810ce5ffd10c4fb2e0cc32ad51b7a, type: 3}
+  m_Name: PoolingConfiguration
+  m_EditorClassIdentifier: 
+  pools:
+  - prefab: {fileID: 8675175223941571761, guid: 6791660bd8d0a324f819fbb656cad399, type: 3}
+    initialSize: 10
+    goBackOnDisable: 1
