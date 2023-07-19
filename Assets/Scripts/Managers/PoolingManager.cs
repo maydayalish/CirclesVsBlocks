@@ -1,72 +1,84 @@
+using Managers.Pool;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolingManager : MonoBehaviour
+namespace Managers
 {
-    [SerializeField] private PoolingConfiguration configuration;
-
-    private Dictionary<GameObject, Queue<GameObject>> objectPools = new Dictionary<GameObject, Queue<GameObject>>();
-
-    private void Awake()
+    public class PoolingManager : ManagerBase
     {
-        InitializePools();
-    }
+        [SerializeField] private PoolingConfiguration configuration;
+        private Dictionary<string, Queue<GameObject>> objectPools = new Dictionary<string, Queue<GameObject>>();
 
-    private void InitializePools()
-    {
-        if (configuration == null)
+        public override void Initialize()
         {
-            Debug.LogError("No PoolingConfiguration assigned to PoolingManager!");
-            return;
-        }
-
-        foreach (var poolInfo in configuration.pools)
-        {
-            CreateObjectPool(poolInfo.prefab, poolInfo.initialSize);
-        }
-    }
-
-    private void CreateObjectPool(GameObject prefab, int initialSize)
-    {
-        if (!objectPools.ContainsKey(prefab))
-        {
-            objectPools[prefab] = new Queue<GameObject>();
-
-            for (int i = 0; i < initialSize; i++)
+            base.Initialize();
+            if (configuration == null)
             {
-                GameObject newObj = Instantiate(prefab);
-                newObj.SetActive(false);
-                objectPools[prefab].Enqueue(newObj);
+                Debug.LogError("No PoolingConfiguration assigned!");
+                return;
+            }
+
+            foreach (var poolInfo in configuration.Pools)
+            {
+                CreateObjectPool(poolInfo.Prefab, poolInfo.InitialSize, poolInfo.GoBackOnDisable);
             }
         }
-    }
 
-    public GameObject GetPooledObject(GameObject prefab)
-    {
-        if (objectPools.ContainsKey(prefab))
+        private void CreateObjectPool(PoolElement prefab, int initialSize, bool goBackOnDisable)
         {
-            if (objectPools[prefab].Count > 0)
+            string prefabName = prefab.name;
+            if (!objectPools.ContainsKey(prefabName))
             {
-                GameObject obj = objectPools[prefab].Dequeue();
-                obj.SetActive(true);
-                return obj;
+                objectPools[prefabName] = new Queue<GameObject>();
+
+                for (int i = 0; i < initialSize; i++)
+                {
+                    PoolElement newPoolElement = Instantiate(prefab.gameObject).GetComponent<PoolElement>();
+                    GameObject poolObj = newPoolElement.gameObject;
+                    poolObj.SetActive(false);
+                    objectPools[prefabName].Enqueue(poolObj);
+                    newPoolElement.Initialize(prefabName);
+                }
             }
             else
             {
-                Debug.LogWarning("Object pool for prefab " + prefab.name + " is empty. Consider increasing the initial size.");
+                Debug.LogError("Pool creation error. The pool called " + prefabName + " has already been created. Prefab name of a pool element is a key and must be unique");
             }
         }
-        else
+
+        public GameObject GetPooledObject(string poolId)
         {
-            Debug.LogError("Object pool for prefab " + prefab.name +" does not exist. Make sure it's added to the configuration.");
+            if (objectPools.ContainsKey(poolId))
+            {
+                if (objectPools[poolId].Count > 0)
+                {
+                    GameObject obj = objectPools[poolId].Dequeue();
+                    obj.SetActive(true);
+                    return obj;
+                }
+                else
+                {
+                    Debug.LogWarning("Object pool for prefab " + poolId + " is empty. Consider increasing the initial size.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Object pool for prefab " + poolId + " does not exist. Make sure it's added to the configuration.");
+            }
+            return null;
         }
 
-        return null;
-    }
-
-    public void ReturnToPool(GameObject obj)
-    {
-        obj.SetActive(false);
-        objectPools[obj.GetComponent<GameObject>()].Enqueue(obj);
+        public void ReturnToPool(PoolElement poolElement)
+        {
+            string poolId = poolElement.PoolId;
+            if (objectPools.ContainsKey(poolId))
+            {
+                objectPools[poolId].Enqueue(poolElement.gameObject);
+            }
+            else
+            {
+                Debug.LogError("Object pool for prefab " + poolId + " does not exist. Make sure it's added to the configuration.");
+            }
+        }
     }
 }
