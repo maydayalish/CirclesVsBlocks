@@ -37,7 +37,7 @@ namespace Managers
                     GameObject poolObj = newPoolElement.gameObject;
                     poolObj.SetActive(false);
                     objectPools[prefabName].Enqueue(poolObj);
-                    newPoolElement.Initialize(prefabName);
+                    newPoolElement.Initialize(goBackOnDisable, prefabName);
                 }
             }
             else
