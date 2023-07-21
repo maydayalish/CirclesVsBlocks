@@ -12,6 +12,9 @@ namespace Game
         private readonly HitterData hitterData = new HitterData();
 
         public int Price { get => price; }
+        public int HitterId { get => hitterId; }
+
+        public HitterData HitterData => hitterData;
 
         public void Initialize(GameConfiguration gameConfig, int hitterId)
         {
@@ -32,7 +35,7 @@ namespace Game
 
         public bool Upgrade()
         {
-           if(ServiceLocator.Resolve<GameManager>().SpendGold(hitterData.GoldPerTap))
+           if(ServiceLocator.Resolve<GameManager>().SpendGold(hitterData.UpgradeCost))
            {
                 hitterData.Upgrade();
                 ServiceLocator.Resolve<EventManager>().TriggerEvent("OnHitterUpgraded", hitterId);

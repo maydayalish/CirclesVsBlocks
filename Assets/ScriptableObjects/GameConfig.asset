@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialCoin: 0
   initialCoinEarning: 5
-  coinEarningScalingFactor: 2.1
   initialUpgradeCost: 5
+  initialHitterPrice: 100
+  coinEarningScalingFactor: 2.1
   upgradeCostScalingBase: 1.08
+  hitterPriceMultiplier: 10

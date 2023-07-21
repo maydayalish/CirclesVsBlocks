@@ -7,13 +7,12 @@ namespace Managers
 {
     public class GameManager : ManagerBase
     {
-        [SerializeField] private GameConfiguration gameConfiguration;
-        [SerializeField] private readonly Currency gold;
-        [SerializeField] private readonly Hitter[] hitters;
+        [SerializeField] private Currency gold;
+        [SerializeField] private Hitter[] hitters;
 
         public Currency Gold { get => gold; }
 
-        public override void Initialize()
+        public override void Initialize(GameConfiguration gameConfiguration)
         {
             ServiceLocator.Register(this);
             UpgradeHandler.Initialize(gameConfiguration);
@@ -32,17 +31,11 @@ namespace Managers
         public void EarnGold(int amount)
         {
             gold.EarnCurrency(amount);
-            ServiceLocator.Resolve<EventManager>().TriggerEvent("OnGoldEarned", amount);
         }
 
         public bool SpendGold(int amount)
         {
-            if(gold.SpendCurrency(amount))
-            {
-                ServiceLocator.Resolve<EventManager>().TriggerEvent("OnGoldSpent", amount);
-                return true;
-            }
-            return false;
+            return gold.SpendCurrency(amount);
         }
 
         public void UpgradeHitter(int hitterId)

@@ -8,7 +8,13 @@ namespace Managers.UI
     {
         [SerializeField] protected TextMeshProUGUI priceText;
 
-        public abstract void Initialize(GameConfiguration gameConfig);
-        public abstract void HandleButtonClicked();
+        public virtual void Initialize(GameConfiguration gameConfig)
+        {
+
+        }
+        public virtual void HandleButtonClicked()
+        {
+
+        }
     }
 }

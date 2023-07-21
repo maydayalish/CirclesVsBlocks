@@ -20,12 +20,12 @@ namespace Game
 
         public static int CalculateEarning(int level)
         {
-            return initialCoinEarning * (int)Mathf.Pow(level, coinEarningScalingFactor);
+            return (int)(initialCoinEarning * Mathf.Pow(level, coinEarningScalingFactor));
         }
 
         public static int CalculateCost(int level)
         {
-            return initialUpgradeCost * (int)Mathf.Pow(upgradeCostScalingBase, level);
+            return (int)(initialUpgradeCost * Mathf.Pow(upgradeCostScalingBase, level));
         }
     }
 }

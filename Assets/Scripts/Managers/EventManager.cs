@@ -1,3 +1,4 @@
+using Managers.Game;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,7 +10,7 @@ namespace Managers
     {
         private readonly Dictionary<string, UnityEventBase> eventsDictionary = new Dictionary<string, UnityEventBase>();
 
-        public override void Initialize()
+        public override void Initialize(GameConfiguration gameConfig)
         {
             ServiceLocator.Register(this);
         }

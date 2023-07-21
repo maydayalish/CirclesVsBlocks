@@ -1,3 +1,4 @@
+using Managers.Game;
 using Managers.Pool;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Managers
         [SerializeField] private PoolingConfiguration configuration;
         private Dictionary<string, Queue<GameObject>> objectPools = new Dictionary<string, Queue<GameObject>>();
 
-        public override void Initialize()
+        public override void Initialize(GameConfiguration gameConfig)
         {
             ServiceLocator.Register(this);
             if (configuration == null)
@@ -24,7 +25,6 @@ namespace Managers
             {
                 CreateObjectPool(poolInfo.Prefab, poolInfo.InitialSize, poolInfo.GoBackOnDisable);
             }
-            Debug.Log("Pooling Manager Called");
         }
 
         public GameObject GetPooledObject(string poolId)

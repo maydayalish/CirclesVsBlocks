@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7810ce5ffd10c4fb2e0cc32ad51b7a, type: 3}
   m_Name: PoolingConfiguration
   m_EditorClassIdentifier: 
-  pools:
-  - prefab: {fileID: 8675175223941571761, guid: 6791660bd8d0a324f819fbb656cad399, type: 3}
-    initialSize: 10
-    goBackOnDisable: 1
+  pools: []
