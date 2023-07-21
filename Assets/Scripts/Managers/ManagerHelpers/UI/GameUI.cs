@@ -1,3 +1,4 @@
+using System.Numerics;
 using TMPro;
 using UnityEngine;
 using Utility;
@@ -9,10 +10,10 @@ namespace Managers.UI
         [SerializeField] private TextMeshProUGUI goldText;
         public void Initialize()
         {
-            ServiceLocator.Resolve<EventManager>().RegisterEvent<int>("OnCurrencyAmountChanged_Gold", OnGoldAmountChanged);
+            ServiceLocator.Resolve<EventManager>().RegisterEvent<BigInteger>("OnCurrencyAmountChanged_Gold", OnGoldAmountChanged);
         }
 
-        private void OnGoldAmountChanged(int newAmount)
+        private void OnGoldAmountChanged(BigInteger newAmount)
         {
             goldText.text = newAmount + "";
         }

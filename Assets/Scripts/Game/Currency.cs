@@ -1,5 +1,6 @@
 using Managers;
 using Utility;
+using System.Numerics;
 
 namespace Game
 {
@@ -7,21 +8,21 @@ namespace Game
     public class Currency
     {
         public string currencyId;
-        private int currentValue;
+        private BigInteger currentValue;
 
-        public int CurrentValue { get => currentValue; }
+        public BigInteger CurrentValue { get => currentValue; }
 
         public void Initialize(int initialAmount)
         {
             SetCurrency(initialAmount);
         }
 
-        public void EarnCurrency(int addedValue)
+        public void EarnCurrency(BigInteger addedValue)
         {
             SetCurrency(currentValue + addedValue);
         }
 
-        public bool SpendCurrency(int spentValue)
+        public bool SpendCurrency(BigInteger spentValue)
         {
             if (spentValue > currentValue)
             {
@@ -31,7 +32,7 @@ namespace Game
             return true;
         }
 
-        private void SetCurrency(int newAmount)
+        private void SetCurrency(BigInteger newAmount)
         {
             currentValue = newAmount;
             ServiceLocator.Resolve<EventManager>().TriggerEvent("OnCurrencyAmountChanged_" + currencyId, currentValue);

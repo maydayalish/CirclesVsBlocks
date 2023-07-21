@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Numerics;
 using UnityEngine;
 
 namespace Game
@@ -6,14 +7,14 @@ namespace Game
     public class HitterData
     {
         private int currentLevel;
-        private int goldPerTap;
-        private int upgradeCost;
+        private BigInteger goldPerTap;
+        private BigInteger upgradeCost;
 
-        public int GoldPerTap { get => goldPerTap; }
-        public int UpgradeCost { get => upgradeCost; }
+        public BigInteger GoldPerTap { get => goldPerTap; }
+        public BigInteger UpgradeCost { get => upgradeCost; }
         public int CurrentLevel { get => currentLevel; }
 
-        public void Initialize(int currentLevel, int goldPerTap, int upgradeCost)
+        public void Initialize(int currentLevel, BigInteger goldPerTap, BigInteger upgradeCost)
         {
             this.currentLevel = currentLevel;
             this.goldPerTap = goldPerTap;

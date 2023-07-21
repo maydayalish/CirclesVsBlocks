@@ -1,5 +1,6 @@
 using Game;
 using Managers.Game;
+using System.Numerics;
 using UnityEngine;
 using Utility;
 
@@ -28,12 +29,12 @@ namespace Managers
             hitters[hitterId].Hit();
         }
 
-        public void EarnGold(int amount)
+        public void EarnGold(BigInteger amount)
         {
             gold.EarnCurrency(amount);
         }
 
-        public bool SpendGold(int amount)
+        public bool SpendGold(BigInteger amount)
         {
             return gold.SpendCurrency(amount);
         }

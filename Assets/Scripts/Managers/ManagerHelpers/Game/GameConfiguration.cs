@@ -1,3 +1,4 @@
+using Unity.Services.RemoteConfig;
 using UnityEngine;
 
 namespace Managers.Game
@@ -20,5 +21,16 @@ namespace Managers.Game
         public float CoinEarningScalingFactor { get => coinEarningScalingFactor; }
         public float UpgradeCostScalingBase { get => upgradeCostScalingBase; }
         public float HitterPriceMultiplier { get => hitterPriceMultiplier; }
+
+        public void ApplyConfiguration()
+        {
+            initialCoin = RemoteConfigService.Instance.appConfig.GetInt("InitialCoin", initialCoin);
+            initialCoinEarning = RemoteConfigService.Instance.appConfig.GetInt("InitialCoinEarning", initialCoinEarning);
+            initialUpgradeCost = RemoteConfigService.Instance.appConfig.GetInt("InitialUpgradeCost", initialUpgradeCost);
+            initialHitterPrice = RemoteConfigService.Instance.appConfig.GetInt("InitialHitterPrice", initialHitterPrice);
+            coinEarningScalingFactor = RemoteConfigService.Instance.appConfig.GetFloat("CoinEarningScalingFactor", coinEarningScalingFactor);
+            upgradeCostScalingBase = RemoteConfigService.Instance.appConfig.GetFloat("UpgradeCostScalingBase", upgradeCostScalingBase);
+            hitterPriceMultiplier = RemoteConfigService.Instance.appConfig.GetFloat("HitterPriceMultiplier", hitterPriceMultiplier);
+        }
     }
 }

@@ -1,5 +1,6 @@
 using Game;
 using Managers.Game;
+using System.Numerics;
 using UnityEngine;
 using Utility;
 
@@ -13,7 +14,7 @@ namespace Managers.UI
         {
             var eventManager = ServiceLocator.Resolve<EventManager>();
 
-            eventManager.RegisterEvent<int>("OnCurrencyAmountChanged_Gold", OnGoldAmountChanged);
+            eventManager.RegisterEvent<BigInteger>("OnCurrencyAmountChanged_Gold", OnGoldAmountChanged);
             eventManager.RegisterEvent<int>("OnHitterAcquired", OnHitterAcquired);
             eventManager.RegisterEvent<int>("OnHitterUpgraded", OnHitterUpgraded);
 
@@ -24,14 +25,14 @@ namespace Managers.UI
             buyCircleButton.Initialize(gameConfig);
         }
 
-        public void OnGoldAmountChanged(int newAmount)
+        public void OnGoldAmountChanged(BigInteger newAmount)
         {
             //Added to polish if an item is too expensive to buy
         }
 
         private void OnHitterAcquired(int hitterId)
         {
-            upgradeHitterButtons[hitterId - 1].gameObject.SetActive(true);
+            upgradeHitterButtons[hitterId].gameObject.SetActive(true);
         }
 
         private void OnHitterUpgraded(int hitterId)

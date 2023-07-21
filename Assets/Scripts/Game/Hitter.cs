@@ -1,5 +1,6 @@
 using Managers;
 using Managers.Game;
+using System.Numerics;
 using UnityEngine;
 using Utility;
 
@@ -8,10 +9,10 @@ namespace Game
     public class Hitter : MonoBehaviour
     {
         private int hitterId;
-        private int price;
+        [SerializeField] private BigInteger price;
         private readonly HitterData hitterData = new HitterData();
 
-        public int Price { get => price; }
+        public BigInteger Price { get => price; }
         public int HitterId { get => hitterId; }
 
         public HitterData HitterData => hitterData;
@@ -19,7 +20,7 @@ namespace Game
         public void Initialize(GameConfiguration gameConfig, int hitterId)
         {
             this.hitterId = hitterId;
-            this.price = gameConfig.InitialHitterPrice * hitterId;
+            this.price = (BigInteger)(gameConfig.InitialHitterPrice * Mathf.Pow(10, hitterId - 1) * Mathf.Sign(hitterId));
             hitterData.Initialize(0, gameConfig.InitialCoinEarning, gameConfig.InitialUpgradeCost);
         }
 

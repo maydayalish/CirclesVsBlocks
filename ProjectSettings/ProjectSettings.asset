@@ -800,11 +800,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 75b777d0-ad99-4a7a-9d32-2b5cf55e1986
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: CirclesVsBlock
+  organizationId: alidal87
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
