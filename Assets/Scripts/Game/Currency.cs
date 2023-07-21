@@ -1,41 +1,40 @@
 using Managers;
-using Managers.Event;
 using Utility;
 
 namespace Game
 {
+    [System.Serializable]
     public class Currency
     {
-        private EventManager eventManager;
-        private IntValue currentValue = new IntValue();
+        public string currencyId;
+        private int currentValue;
 
-        public IntValue CurrentValue { get => currentValue; }
+        public int CurrentValue { get => currentValue; }
 
-        public void Initialize(int currencyId, int initialAmount)
+        public void Initialize(int initialAmount)
         {
-            eventManager = ServiceLocator.Resolve<EventManager>();
             SetCurrency(initialAmount);
         }
 
-        public void EarnCurrency(IntValue addedValue)
+        public void EarnCurrency(int addedValue)
         {
-            SetCurrency(currentValue.value + addedValue.value);
+            SetCurrency(currentValue + addedValue);
         }
 
-        public bool SpendCurrency(IntValue spentValue)
+        public bool SpendCurrency(int spentValue)
         {
-            if (spentValue.value > currentValue.value)
+            if (spentValue > currentValue)
             {
                 return false;
             }
-            SetCurrency(currentValue.value - spentValue.value);
+            SetCurrency(currentValue - spentValue);
             return true;
         }
 
         private void SetCurrency(int newAmount)
         {
-            currentValue.value = newAmount;
-            eventManager.TriggerEvent("OnCurrencyAmountChanged", currentValue);
+            currentValue = newAmount;
+            ServiceLocator.Resolve<EventManager>().TriggerEvent("OnCurrencyAmountChanged_" + currencyId, currentValue);
         }
     }
 }
