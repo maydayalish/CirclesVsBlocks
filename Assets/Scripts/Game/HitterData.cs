@@ -26,7 +26,6 @@ namespace Game
             currentLevel++;
             goldPerTap = UpgradeHandler.CalculateEarning(currentLevel);
             upgradeCost = UpgradeHandler.CalculateCost(currentLevel);
-            UnityEngine.Debug.Log("Upgrade Cost Updated: " + upgradeCost);
         }
     }
 }

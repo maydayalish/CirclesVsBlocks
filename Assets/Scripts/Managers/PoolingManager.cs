@@ -1,6 +1,5 @@
 using Managers.Game;
 using Managers.Pool;
-using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 using Utility;
@@ -27,13 +26,14 @@ namespace Managers
             }
         }
 
-        public GameObject GetPooledObject(string poolId)
+        public GameObject GetPooledObject(string poolId, Vector3 position)
         {
             if (objectPools.ContainsKey(poolId))
             {
                 if (objectPools[poolId].Count > 0)
                 {
                     GameObject obj = objectPools[poolId].Dequeue();
+                    obj.transform.position = position;
                     obj.SetActive(true);
                     return obj;
                 }
@@ -41,7 +41,7 @@ namespace Managers
                 {
                     if (CreatePoolObjectFromId(poolId))
                     {
-                        GetPooledObject(poolId);
+                        GetPooledObject(poolId, position);
                     }
                 }
             }
@@ -101,13 +101,5 @@ namespace Managers
             objectPools[poolElement.name].Enqueue(newPoolObject);
             return newPoolObject;
         }
-
-        //TODO Delete Test cases
-        [Button("Get Torus")]
-        public void GetTorus()
-        {
-            GetPooledObject("Torus");
-        }
-
     }
 }

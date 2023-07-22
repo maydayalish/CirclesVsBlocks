@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7810ce5ffd10c4fb2e0cc32ad51b7a, type: 3}
   m_Name: PoolingConfiguration
   m_EditorClassIdentifier: 
-  pools: []
+  pools:
+  - prefab: {fileID: 9114772012817479220, guid: 7f45705f5f30d8a45af0fc2eb8c8998a, type: 3}
+    initialSize: 5
+    goBackOnDisable: 1
+  - prefab: {fileID: -3493077069616906462, guid: 16d4b504584fb1d4784bc23462900274, type: 3}
+    initialSize: 5
+    goBackOnDisable: 1
+  - prefab: {fileID: -8040637398636344300, guid: 3547e5e490f502041ae6e8a59042e4bd, type: 3}
+    initialSize: 5
+    goBackOnDisable: 1
+  - prefab: {fileID: -1198634101266422282, guid: 185035e4680c4b344b62bf5ace4674b8, type: 3}
+    initialSize: 5
+    goBackOnDisable: 1

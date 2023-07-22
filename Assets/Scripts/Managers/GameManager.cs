@@ -10,8 +10,10 @@ namespace Managers
     {
         [SerializeField] private Currency gold;
         [SerializeField] private Hitter[] hitters;
+        [SerializeField] private GameObject enemy;
 
         public Currency Gold { get => gold; }
+        public GameObject Enemy { get => enemy; }
 
         public override void Initialize(GameConfiguration gameConfiguration)
         {
@@ -51,11 +53,8 @@ namespace Managers
                 Hitter hitter = hitters[i];
                 if (!hitter.gameObject.activeInHierarchy)
                 {
-                    if (hitter.ActivateHitter())
-                    {
-                        ServiceLocator.Resolve<EventManager>().TriggerEvent<int>("OnHitterAcquired", i);
-                        return;
-                    }
+                    hitter.ActivateHitter();
+                    return;
                 }
             }
         }

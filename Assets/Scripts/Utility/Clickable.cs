@@ -9,7 +9,7 @@ namespace Utility
 
         private void OnMouseDown()
         {
-            clickEvent.Invoke();
+            clickEvent?.Invoke();
         }
     }
 }

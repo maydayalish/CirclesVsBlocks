@@ -17,7 +17,7 @@ namespace Game
 
         public HitterData HitterData => hitterData;
 
-        public void Initialize(GameConfiguration gameConfig, int hitterId)
+        public virtual void Initialize(GameConfiguration gameConfig, int hitterId)
         {
             this.hitterId = hitterId;
             this.price = (BigInteger)(gameConfig.InitialHitterPrice * Mathf.Pow(10, hitterId - 1) * Mathf.Sign(hitterId));
@@ -29,6 +29,7 @@ namespace Game
             if (ServiceLocator.Resolve<GameManager>().SpendGold(price))
             {
                 gameObject.SetActive(true);
+                ServiceLocator.Resolve<EventManager>().TriggerEvent<int>("OnHitterAcquired", hitterId);
                 return true;
             }
             return false;
