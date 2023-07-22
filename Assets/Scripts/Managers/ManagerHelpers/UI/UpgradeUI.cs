@@ -8,8 +8,8 @@ namespace Managers.UI
 {
     public class UpgradeUI : MonoBehaviour
     {
-        [SerializeField] private UpgradeHitterButton[] upgradeHitterButtons;
         [SerializeField] private BuyCircleButton buyCircleButton;
+        [SerializeField] private UpgradeHitterButton[] upgradeHitterButtons;
         public void Initialize(GameConfiguration gameConfig)
         {
             var eventManager = ServiceLocator.Resolve<EventManager>();

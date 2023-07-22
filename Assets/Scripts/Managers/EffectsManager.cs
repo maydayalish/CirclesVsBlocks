@@ -7,8 +7,8 @@ namespace Managers
 {
     public class EffectsManager : ManagerBase
     {
-        [SerializeField] private Vector3 punchSize;
         [SerializeField] private float punchDuration;
+        [SerializeField] private Vector3 punchSize;
         [SerializeField] private string[] particlePoolIds;
 
         private PoolingManager pooling; //Effects shall be called often

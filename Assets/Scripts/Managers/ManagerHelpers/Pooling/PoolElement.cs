@@ -5,9 +5,9 @@ namespace Managers.Pool
 {
     public class PoolElement : MonoBehaviour
     {
-        private string poolId;
         private bool goBackOnDisable;
         private bool isApplicationQuitting;
+        private string poolId;
 
         public string PoolId { get => poolId; }
 

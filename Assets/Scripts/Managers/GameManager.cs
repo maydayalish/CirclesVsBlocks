@@ -9,8 +9,8 @@ namespace Managers
     public class GameManager : ManagerBase
     {
         [SerializeField] private Currency gold;
-        [SerializeField] private Hitter[] hitters;
         [SerializeField] private GameObject enemy;
+        [SerializeField] private Hitter[] hitters;
 
         public Currency Gold { get => gold; }
         public GameObject Enemy { get => enemy; }

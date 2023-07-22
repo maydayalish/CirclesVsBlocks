@@ -8,14 +8,14 @@ namespace Game
 {
     public class Hitter : MonoBehaviour
     {
+        private readonly HitterData hitterData = new HitterData();
         private int hitterId;
         [SerializeField] private BigInteger price;
-        private readonly HitterData hitterData = new HitterData();
-
-        public BigInteger Price { get => price; }
-        public int HitterId { get => hitterId; }
 
         public HitterData HitterData => hitterData;
+        public int HitterId { get => hitterId; }
+        public BigInteger Price { get => price; }
+        
 
         public virtual void Initialize(GameConfiguration gameConfig, int hitterId)
         {
