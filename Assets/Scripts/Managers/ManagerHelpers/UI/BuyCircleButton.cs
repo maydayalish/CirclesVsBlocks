@@ -25,7 +25,7 @@ namespace Managers.UI
             }
             else
             {
-                priceText.text = hitter.Price + "";
+                priceText.text = NumberFormatter.FormatNumber(hitter.Price);
             }
         }
     }

@@ -15,7 +15,7 @@ namespace Managers.UI
 
         private void OnGoldAmountChanged(BigInteger newAmount)
         {
-            goldText.text = newAmount + "";
+            goldText.text = NumberFormatter.FormatNumber(newAmount);
         }
     }
 }

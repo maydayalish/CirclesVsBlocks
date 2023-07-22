@@ -1,6 +1,7 @@
 using Managers.Game;
 using Managers.UI;
 using UnityEngine;
+using Utility;
 
 namespace Managers
 {
@@ -8,10 +9,13 @@ namespace Managers
     {
         [SerializeField] private GameUI gamePanel;
         [SerializeField] private UpgradeUI upgradePanel;
+        [SerializeField] private GameObject loadingPanel;
+
         public override void Initialize(GameConfiguration gameConfig)
         {
             gamePanel.Initialize();
             upgradePanel.Initialize(gameConfig);
+            loadingPanel.SetActive(false);
         }
     }
 }

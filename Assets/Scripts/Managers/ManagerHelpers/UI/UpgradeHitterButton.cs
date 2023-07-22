@@ -25,7 +25,7 @@ namespace Managers.UI
         public void OnHitterUpgraded(HitterData hitterData)
         {
             UpdateLevelText(hitterData.CurrentLevel + 1);
-            priceText.text = hitterData.UpgradeCost+ "";
+            priceText.text = NumberFormatter.FormatNumber(hitterData.UpgradeCost);
         }
 
         private void UpdateLevelText(int level)
