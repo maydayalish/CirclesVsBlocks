@@ -4388,7 +4388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   punchDuration: 0.2
-  punchSize: {x: 1.2, y: 1.2, z: 1.2}
+  punchSize: {x: 0.5, y: 0.5, z: 0.5}
   particlePoolIds:
   - RoundHitBlue
   - RoundHitGreen
