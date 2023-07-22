@@ -22,6 +22,7 @@ namespace Managers
         {
             int randomParticleIdIndex = Random.Range(0, particlePoolIds.Length);
             punchedObject.transform.DORewind();
+            DOTween.KillAll();
             punchedObject.transform.DOPunchScale(punchSize, punchDuration);
             pooling.GetPooledObject(particlePoolIds[randomParticleIdIndex], particlePoint);
         }
