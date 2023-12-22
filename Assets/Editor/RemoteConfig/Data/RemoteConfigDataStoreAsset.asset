@@ -12,42 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"fc8585f2-828a-49a9-8c88-e0fa24ff7670\"\r\n   
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"778307e1-45a4-4022-a060-46ad17866625\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"InitialCoin\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"4589438b-0f82-4970-a179-9b0576f8c5af\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"ec9631f7-a97f-4b9a-8c68-1b97779e8a7c\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"InitialCoinEarning\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"288b6bea-3071-4044-a399-b800ba92a025\"\r\n   
+    5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"f5bce137-d3a4-4efd-a3d3-7ea2bbc2a8d9\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"InitialUpgradeCost\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"65576d9c-96ac-4ea8-9ee7-f71022e3eddd\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"b5a866e8-881b-4389-84b8-91b03d250989\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"InitialHitterPrice\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 100\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"154d8801-dad1-4323-8bf7-c0d38edfb933\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"fea42042-fb5d-47a0-b638-aec302ac0888\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"CoinEarningScalingFactor\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 2.1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"15798032-29ec-45fc-b8ce-9fd91f5c63b7\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"adb55758-8c76-491e-807a-d77f73c9b368\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"UpgradeCostScalingBase\",\r\n      \"type\": \"float\",\r\n      \"value\":
-    1.08\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"143ba87a-de9b-44d2-8ba3-f0746aa050f0\"\r\n   
+    1.08\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"3f970326-d296-46c6-a1ee-8ae794421fea\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"HitterPriceMultiplier\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 10.0\r\n    }\r\n  }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"fc8585f2-828a-49a9-8c88-e0fa24ff7670\"\r\n   
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"778307e1-45a4-4022-a060-46ad17866625\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"InitialCoin\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"4589438b-0f82-4970-a179-9b0576f8c5af\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"ec9631f7-a97f-4b9a-8c68-1b97779e8a7c\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"InitialCoinEarning\",\r\n      \"type\": \"int\",\r\n      \"value\":
-    5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"288b6bea-3071-4044-a399-b800ba92a025\"\r\n   
+    5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"f5bce137-d3a4-4efd-a3d3-7ea2bbc2a8d9\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"InitialUpgradeCost\",\r\n      \"type\":
     \"int\",\r\n      \"value\": 5\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"65576d9c-96ac-4ea8-9ee7-f71022e3eddd\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"b5a866e8-881b-4389-84b8-91b03d250989\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"InitialHitterPrice\",\r\n      \"type\": \"int\",\r\n     
     \"value\": 100\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"154d8801-dad1-4323-8bf7-c0d38edfb933\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"fea42042-fb5d-47a0-b638-aec302ac0888\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"CoinEarningScalingFactor\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 2.1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"15798032-29ec-45fc-b8ce-9fd91f5c63b7\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"adb55758-8c76-491e-807a-d77f73c9b368\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"UpgradeCostScalingBase\",\r\n      \"type\": \"float\",\r\n      \"value\":
-    1.08\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"143ba87a-de9b-44d2-8ba3-f0746aa050f0\"\r\n   
+    1.08\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"3f970326-d296-46c6-a1ee-8ae794421fea\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"HitterPriceMultiplier\",\r\n      \"type\":
     \"float\",\r\n      \"value\": 10.0\r\n    }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"75b777d0-ad99-4a7a-9d32-2b5cf55e1986\",\r\n   

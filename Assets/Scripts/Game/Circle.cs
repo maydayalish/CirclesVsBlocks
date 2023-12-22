@@ -8,6 +8,7 @@ namespace Game
     public class Circle : Hitter
     {
         private readonly int hitAnimHash = Animator.StringToHash("Hit"); //Works faster
+        private int hitRepeater;
         private EffectsManager effects;
         private GameObject enemy;
         [SerializeField] private Transform hitPosition;
@@ -23,10 +24,15 @@ namespace Game
         {
             if(base.ActivateHitter())
             {
-                Delayer.Delay(1f, () => RepeatHit());
+                hitRepeater = Delayer.Delay(1f, () => RepeatHit());
                 return true;
             }
             return false;
+        }
+
+        public void StopHitter()
+        {
+            Delayer.CancelDelay(hitRepeater);
         }
 
         public void RepeatHit()
@@ -34,7 +40,7 @@ namespace Game
             Hit();
             hitAnimator.Play(hitAnimHash, 0, 0);
             effects.Play(enemy, hitPosition.position);
-            Delayer.Delay(1f, ()=> RepeatHit());
+            hitRepeater = Delayer.Delay(1f, ()=> RepeatHit());
         }
     }
 }

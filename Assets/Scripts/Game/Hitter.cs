@@ -9,6 +9,7 @@ namespace Game
     public class Hitter : MonoBehaviour
     {
         private readonly HitterData hitterData = new HitterData();
+
         private int hitterId;
         [SerializeField] private BigInteger price;
 

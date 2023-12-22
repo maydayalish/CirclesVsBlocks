@@ -25,7 +25,7 @@ namespace Managers.UI
             buyCircleButton.Initialize(gameConfig);
         }
 
-        public void OnGoldAmountChanged(BigInteger newAmount)
+        private void OnGoldAmountChanged(BigInteger newAmount)
         {
             //Added to polish if an item is too expensive to buy
         }
